@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  database:
+    container_name: api_database
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER : ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+          - ./sql-scripts:/docker-entrypoint-initdb.d
+    # command: ["/bin/sh", "-c", "echo $DATABASE_USER && echo $DATABASE_PASSWORD && echo $DATABASE_NAME && sleep infinity"]

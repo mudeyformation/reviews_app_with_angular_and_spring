@@ -1,0 +1,6 @@
+@use 'theme';
+
+.banner{
+  background: linear-gradient(to right, theme.$common-purple, theme.$common-red);
+  color: white;
+}
