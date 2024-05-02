@@ -22,6 +22,12 @@ export class HomeComponent implements OnInit {
 
   async loadPopularReviews() {
     this.popularReviews =  await localDb.getAllData('review')
+    this.popularReviews.map(async (review) => {
+      if(review.entity_type === 'movie'){
+        review.entity =  await localDb.getData('movies', review.entity_id)
+      }
+      return review
+    });
   }
   
 }
